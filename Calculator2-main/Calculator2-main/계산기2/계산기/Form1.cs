@@ -10,19 +10,22 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace 계산기
 {
     public partial class Form1 : Form
     {
-        private double lValue;
-        private char op = '\0';
-        private bool opFlag = false;
-        private double memory;
-        private bool memFlag = false;
+        public double lValue;
+        public char op = '\0';
+        public bool opFlag = false;
+        public double memory;
+        public bool memFlag = false;
 
         public Form1()
         {
+
+            this.KeyPreview = true;  // 폼이 키보드 입력을 받을 수 있도록 설정
             InitializeComponent();
 
             btnMC.Enabled = false; 
@@ -34,57 +37,78 @@ namespace 계산기
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             this.BackColor = Color.FromArgb(243, 243, 243);
             txtResult.Text = "0";
             timer1.Start();
         }
         private void btn0_Click(object sender, EventArgs e)
         {
-
+            Btn0Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
         private void btn1_Click(object sender, EventArgs e)
         {
-
+            Btn1Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
 
         private void btn2_Click(object sender, EventArgs e)
         {
-
+            Btn2Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
 
         private void btn3_Click(object sender, EventArgs e)
         {
-
+            Btn3Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
 
         private void btn4_Click(object sender, EventArgs e)
         {
-
+            Btn4Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
 
         private void btn5_Click(object sender, EventArgs e)
         {
-
+            Btn5Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
 
         private void btn6_Click(object sender, EventArgs e)
         {
-
+            Btn6Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
 
         private void btn7_Click(object sender, EventArgs e)
         {
-
+            Btn7Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
 
-        private void btn8_Click(object sender, EventArgs e)
+        public void btn8_Click(object sender, EventArgs e)
         {
-
+            Btn8Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
 
         private void btn9_Click(object sender, EventArgs e)
         {
-
+            Btn9Handler.HandleClick(sender, e, txtResult, opFlag, memFlag);
+            opFlag = false;
+            memFlag = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -120,29 +144,10 @@ namespace 계산기
         }
         private void btnResult_Click(object sender, EventArgs e)
         {
-            Double rValue = Double.Parse(txtResult.Text);
-            switch (op)
-            {
-                case '+':
-                    txtResult.Text = FormatResult(lValue + rValue);
-                    break;
-                case '-':
-                    txtResult.Text = FormatResult(lValue - rValue);
-                    break;
-                case '*':
-                    txtResult.Text = FormatResult(lValue * rValue);
-                    break;
-                case '/':
-                    txtResult.Text = FormatResult(lValue / rValue);
-                    break;
-            }
-            txtExp.Text = "";
+            double rValue = double.Parse(txtResult.Text);
+            CalculationHandler.PerformCalculation(txtResult, txtExp, lValue, rValue, op);
         }
 
-        private string FormatResult(double result)
-        {
-            return result.ToString("#,##0.###");
-        }
 
         private void btnClearEntry_Click(object sender, EventArgs e)
         {
@@ -193,21 +198,12 @@ namespace 계산기
         
         private void btnSqrt_Click(object sender, EventArgs e)
         {
-            txtExp.Text = "√(" + txtResult.Text + ")";
-            txtResult.Text = Math.Sqrt(Double.Parse(txtResult.Text)).ToString();
+            SqrtHandler.HandleSqrt(txtResult, txtExp);
         }
 
         private void btnSquare_Click(object sender, EventArgs e)
         {
-            double originalValue = Double.Parse(txtResult.Text);
-
-            // 제곱을 계산하고 문자열을 형식화
-            double squaredValue = originalValue * originalValue;
-            string formattedResult = (squaredValue % 1 == 0) ? squaredValue.ToString("N0") : squaredValue.ToString("N");
-
-            // 디스플레이를 업데이트
-            txtExp.Text = $"sqr({originalValue})";
-            txtResult.Text = formattedResult;
+            SquareHandler.HandleSquare(txtResult, txtExp);
         }
 
         private void btnReciprocal_Click(object sender, EventArgs e)
@@ -260,43 +256,7 @@ namespace 계산기
         {
             memory -= Double.Parse(txtResult.Text);
         }
-
-        //모든 숫자버튼을 하나로 처리하는 메소드
-        private void btn_click(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            string s = btn.Name.Remove(0, 3); // s = 1,2,3,...,0
-
-            if (txtResult.Text == "0" || opFlag == true || memFlag == true)
-            {
-                txtResult.Text = s;
-                opFlag = false;
-                memFlag = false;
-            }
-            else
-            {
-                txtResult.Text += s;
-            }
-
-            double v = Double.Parse(txtResult.Text);
-
-            int pos = 0;
-            if (txtResult.Text.Contains("."))
-            {
-                pos = txtResult.Text.Length - txtResult.Text.IndexOf(".");
-                if (pos == 1)
-                {
-                    return;
-                }
-                string formatStr = "{0:N" + (pos - 1) + "}";
-                txtResult.Text = string.Format(formatStr, v);
-            }
-            else
-            {
-                txtResult.Text = string.Format("{0:N0}", v);
-            }
-        }
-
+                
         private void btnMhistory_Click(object sender, EventArgs e)
         {
 
@@ -310,6 +270,77 @@ namespace 계산기
         private void btnOptionClose_Click(object sender, EventArgs e)
         {
             panel1.Visible=false;
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    btnResult_Click(sender, e);
+                    break;
+                case Keys.NumPad0:
+                    btn0_Click(sender, e);
+                    break;
+                case Keys.NumPad1:
+                    btn1_Click(sender, e);
+                    break;
+                case Keys.NumPad2:
+                    btn2_Click(sender, e);
+                    break;
+                case Keys.NumPad3:
+                    btn3_Click(sender, e);
+                    break;
+                case Keys.NumPad4:
+                    btn4_Click(sender, e);
+                    break;
+                case Keys.NumPad5:
+                    btn5_Click(sender, e);
+                    break;
+                case Keys.NumPad6:
+                    btn6_Click(sender, e);
+                    break;
+                case Keys.NumPad7:
+                    btn7_Click(sender, e);
+                    break;
+                case Keys.NumPad8:
+                    btn8_Click(sender, e);
+                    break;
+                case Keys.NumPad9:
+                    btn9_Click(sender, e);
+                    break;
+                case Keys.D0:
+                    btn0_Click(sender, e);
+                    break;
+                case Keys.D1:
+                    btn1_Click(sender, e);
+                    break;
+                case Keys.D2:
+                    btn2_Click(sender, e);
+                    break;
+                case Keys.D3:
+                    btn3_Click(sender, e);
+                    break;
+                case Keys.D4:
+                    btn4_Click(sender, e);
+                    break;
+                case Keys.D5:
+                    btn5_Click(sender, e);
+                    break;
+                case Keys.D6:
+                    btn6_Click(sender, e);
+                    break;
+                case Keys.D7:
+                    btn7_Click(sender, e);
+                    break;
+                case Keys.D8:
+                    btn8_Click(sender, e);
+                    break;
+                case Keys.D9:
+                    btn9_Click(sender, e);
+                    break;
+                
+            }
         }
     }
 }

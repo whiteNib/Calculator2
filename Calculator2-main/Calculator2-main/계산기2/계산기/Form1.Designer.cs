@@ -60,11 +60,11 @@
             this.btnMS = new System.Windows.Forms.Button();
             this.btnMhistory = new System.Windows.Forms.Button();
             this.txtResult = new System.Windows.Forms.TextBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtExp = new System.Windows.Forms.TextBox();
             this.btnOption = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnOptionClose = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +96,7 @@
             this.btn0.TabIndex = 1;
             this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = false;
-            this.btn0.Click += new System.EventHandler(this.btn_click);
+            this.btn0.Click += new System.EventHandler(this.btn0_Click);
             // 
             // btnDot
             // 
@@ -156,7 +156,7 @@
             this.btn3.TabIndex = 6;
             this.btn3.Text = "3";
             this.btn3.UseVisualStyleBackColor = false;
-            this.btn3.Click += new System.EventHandler(this.btn_click);
+            this.btn3.Click += new System.EventHandler(this.btn3_Click);
             // 
             // btn2
             // 
@@ -171,7 +171,7 @@
             this.btn2.TabIndex = 5;
             this.btn2.Text = "2";
             this.btn2.UseVisualStyleBackColor = false;
-            this.btn2.Click += new System.EventHandler(this.btn_click);
+            this.btn2.Click += new System.EventHandler(this.btn2_Click);
             // 
             // btn1
             // 
@@ -186,7 +186,7 @@
             this.btn1.TabIndex = 4;
             this.btn1.Text = "1";
             this.btn1.UseVisualStyleBackColor = false;
-            this.btn1.Click += new System.EventHandler(this.btn_click);
+            this.btn1.Click += new System.EventHandler(this.btn1_Click);
             // 
             // btnSubtract
             // 
@@ -216,7 +216,7 @@
             this.btn6.TabIndex = 10;
             this.btn6.Text = "6";
             this.btn6.UseVisualStyleBackColor = false;
-            this.btn6.Click += new System.EventHandler(this.btn_click);
+            this.btn6.Click += new System.EventHandler(this.btn6_Click);
             // 
             // btn5
             // 
@@ -231,7 +231,7 @@
             this.btn5.TabIndex = 9;
             this.btn5.Text = "5";
             this.btn5.UseVisualStyleBackColor = false;
-            this.btn5.Click += new System.EventHandler(this.btn_click);
+            this.btn5.Click += new System.EventHandler(this.btn5_Click);
             // 
             // btn4
             // 
@@ -246,7 +246,7 @@
             this.btn4.TabIndex = 8;
             this.btn4.Text = "4";
             this.btn4.UseVisualStyleBackColor = false;
-            this.btn4.Click += new System.EventHandler(this.btn_click);
+            this.btn4.Click += new System.EventHandler(this.btn4_Click);
             // 
             // btnMultiply
             // 
@@ -276,7 +276,7 @@
             this.btn9.TabIndex = 14;
             this.btn9.Text = "9";
             this.btn9.UseVisualStyleBackColor = false;
-            this.btn9.Click += new System.EventHandler(this.btn_click);
+            this.btn9.Click += new System.EventHandler(this.btn9_Click);
             // 
             // btn8
             // 
@@ -291,7 +291,7 @@
             this.btn8.TabIndex = 13;
             this.btn8.Text = "8";
             this.btn8.UseVisualStyleBackColor = false;
-            this.btn8.Click += new System.EventHandler(this.btn_click);
+            this.btn8.Click += new System.EventHandler(this.btn8_Click);
             // 
             // btn7
             // 
@@ -306,7 +306,7 @@
             this.btn7.TabIndex = 12;
             this.btn7.Text = "7";
             this.btn7.UseVisualStyleBackColor = false;
-            this.btn7.Click += new System.EventHandler(this.btn_click);
+            this.btn7.Click += new System.EventHandler(this.btn7_Click);
             // 
             // btnDivide
             // 
@@ -525,10 +525,6 @@
             this.txtResult.Text = "0";
             this.txtResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // txtExp
             // 
             this.txtExp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
@@ -577,13 +573,16 @@
             this.btnOptionClose.UseVisualStyleBackColor = true;
             this.btnOptionClose.Click += new System.EventHandler(this.btnOptionClose_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.ClientSize = new System.Drawing.Size(319, 501);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnOption);
             this.Controls.Add(this.txtExp);
             this.Controls.Add(this.txtResult);
@@ -617,11 +616,13 @@
             this.Controls.Add(this.btnDot);
             this.Controls.Add(this.btn0);
             this.Controls.Add(this.btnPM);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "계산기";
             this.TransparencyKey = System.Drawing.SystemColors.Control;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -660,12 +661,12 @@
         private System.Windows.Forms.Button btnMminus;
         private System.Windows.Forms.Button btnMS;
         private System.Windows.Forms.Button btnMhistory;
-        private System.Windows.Forms.TextBox txtResult;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TextBox txtExp;
         private System.Windows.Forms.Button btnOption;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnOptionClose;
+        public System.Windows.Forms.TextBox txtResult;
+        public System.Windows.Forms.TextBox txtExp;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

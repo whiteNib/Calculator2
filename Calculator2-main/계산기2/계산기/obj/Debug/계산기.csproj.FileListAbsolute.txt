@@ -18,12 +18,3 @@ C:\Users\Q\source\repos\계산기2\계산기\obj\Debug\계산기.pdb
 C:\Users\Q\source\repos\계산기2\계산기\bin\Debug\계산기.exe.config
 C:\Users\Q\source\repos\계산기2\계산기\bin\Debug\계산기.exe
 C:\Users\Q\source\repos\계산기2\계산기\bin\Debug\계산기.pdb
-C:\Users\SW DEV2\Desktop\Calculator2-main\계산기2\계산기\bin\Debug\계산기.exe.config
-C:\Users\SW DEV2\Desktop\Calculator2-main\계산기2\계산기\obj\Debug\계산기.exe
-C:\Users\SW DEV2\Desktop\Calculator2-main\계산기2\계산기\obj\Debug\계산기.pdb
-C:\Users\SW DEV2\Desktop\Calculator2-main\계산기2\계산기\obj\Debug\계산기.Form1.resources
-C:\Users\SW DEV2\Desktop\Calculator2-main\계산기2\계산기\obj\Debug\계산기.Properties.Resources.resources
-C:\Users\SW DEV2\Desktop\Calculator2-main\계산기2\계산기\obj\Debug\계산기.csproj.GenerateResource.Cache
-C:\Users\SW DEV2\Desktop\Calculator2-main\계산기2\계산기\obj\Debug\계산기.csprojResolveAssemblyReference.cache
-C:\Users\SW DEV2\Desktop\Calculator2-main\계산기2\계산기\bin\Debug\계산기.exe
-C:\Users\SW DEV2\Desktop\Calculator2-main\계산기2\계산기\bin\Debug\계산기.pdb
